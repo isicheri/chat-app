@@ -95,5 +95,8 @@ return accessToken;
      return this.issueToken(user,res)
     }
 
-    
+    async logout(res:Response) {
+        res.clearCookie("access_token");
+        return "successfully logged out"
+    }
 }
