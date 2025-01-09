@@ -2,10 +2,12 @@ import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { LoginResponse, RegisterResponse } from './types/auth.types';
 import { LoginDto, RegisterDto } from './dto/auth.dto';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, UseFilters } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { GraphqlErrorFilter } from 'src/filters/custom-exception.filters';
 
 
+@UseFilters(GraphqlErrorFilter)
 @Resolver()
 export class AuthResolver {
     constructor(

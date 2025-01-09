@@ -30,8 +30,8 @@ export class UserResolver {
     private async storeImageAndGetUrl(file:GraphqlUpload.FileUpload) {
         const {createReadStream,filename} = await file;
         const uniqueFileName = `${uuidv4()}_${filename}`;
-        const imagePath = join(process.cwd(),"public",uniqueFileName);
-        const imageUrl = `${process.env.APP_URL}/${uniqueFileName}`;
+        const imagePath = join(process.cwd(),"public","images",uniqueFileName);
+        const imageUrl = `${process.env.APP_URL}/images${uniqueFileName}`;
         const readStream = createReadStream();
         readStream.pipe(createReadStream(imagePath))
         return imageUrl
