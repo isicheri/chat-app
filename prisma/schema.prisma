@@ -27,6 +27,7 @@ model User {
 
 model Chatroom {
   id        Int       @id @default(autoincrement())
+  name      String
   users     User[]    @relation("ChatroomUser")
   messages  Message[]
   createdAt DateTime  @default(now())
