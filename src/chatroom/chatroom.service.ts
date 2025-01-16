@@ -123,5 +123,27 @@ export class ChatroomService {
     return imagePath;
   }
 
+  async getMessagesForChatroom(chatroomId: number) {
+   return await this.prismaService.message.findMany({
+    where: {chatroomId: chatroomId},
+    include: {
+        chatroom: {
+            include: {
+                users:{
+                    orderBy: {
+                        createdAt: "desc"
+                    }
+                }
+            }
+        },
+        user: true
+    }
+   })
+  }
+
+  async deleteChatroom(chatroomId: number) {
+    return this.prismaService.chatroom.delete({where: {id: chatroomId}})
+  }
+
 }
  
