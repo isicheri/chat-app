@@ -36,4 +36,13 @@ export class UserResolver {
         readStream.pipe(createReadStream(imagePath))
         return imageUrl
     }
+
+    @UseGuards(GraphqlAuthGuard)
+    @Query(() => [User])
+    async searchUsers(
+        @Args("fullname") fullname: string,
+        @Context() context: {req: Request}
+    ) {
+        return this.userService.searchUsers(fullname,context.req.user?.sub);
+    }
 }

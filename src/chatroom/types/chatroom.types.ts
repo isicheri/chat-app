@@ -20,7 +20,7 @@ export class Chatroom {
     @Field(() => [User],{nullable: true})
     users?: User[];
 
-    @Field(() => [ID],{nullable: true})
+    @Field(() => [Message],{nullable: true})
     messages?: Message[]
 
 }
